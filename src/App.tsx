@@ -22,7 +22,10 @@ import {
   VolumeX,
   Wifi,
   WashingMachine,
-  Camera
+  Camera,
+  RefreshCw,
+  ShoppingBag,
+  CreditCard
 } from 'lucide-react';
 import { 
   NAV_ITEMS, 
@@ -54,13 +57,13 @@ const Button = ({
 }) => {
   const base = "px-6 py-3 rounded-lg font-bold transition-all duration-300 flex items-center justify-center gap-2 text-sm uppercase tracking-wider";
   const variants = {
-    primary: "bg-[#005696] text-white hover:bg-[#004275] shadow-md",
+    primary: "bg-[#2B3A67] text-white hover:bg-[#1e294b] shadow-md",
     secondary: "bg-slate-100 text-slate-800 hover:bg-slate-200",
-    outline: "border-2 border-[#005696] text-[#005696] hover:bg-blue-50",
-    ghost: "text-slate-600 hover:text-[#005696] hover:bg-blue-50",
-    accent: "bg-[#FFD700] text-slate-900 hover:bg-[#e6c200] shadow-md",
+    outline: "border-2 border-[#2B3A67] text-[#2B3A67] hover:bg-blue-50",
+    ghost: "text-slate-600 hover:text-[#2B3A67] hover:bg-blue-50",
+    accent: "bg-[#7DD3FC] text-[#2B3A67] hover:bg-[#38bdf8] shadow-md",
     success: "bg-[#22c55e] text-white hover:bg-[#1eb054] shadow-md",
-    navy: "bg-[#005696] text-white hover:bg-[#004275] shadow-md"
+    navy: "bg-[#2B3A67] text-white hover:bg-[#1e294b] shadow-md"
   };
 
   const Component = href ? 'a' : 'button';
@@ -126,7 +129,7 @@ const Header = () => {
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white shadow-md' : 'bg-white/80 backdrop-blur-md'}`}>
       {/* Marquee Top Bar */}
-      <div className="bg-[#00B7F1] text-white text-sm py-2 overflow-hidden flex items-center">
+      <div className="bg-[#7DD3FC] text-[#2B3A67] font-bold text-sm py-2 overflow-hidden flex items-center">
         <div className="animate-infinite-scroll flex whitespace-nowrap items-center">
           {[...Array(2)].map((_, copyIdx) => (
             <div key={copyIdx} className="flex items-center gap-8 px-4">
@@ -145,14 +148,14 @@ const Header = () => {
 
       <div className={`container mx-auto px-4 flex items-center justify-between transition-all duration-300 ${scrolled ? 'py-3' : 'py-5'}`}>
         <a href="#home" className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-full overflow-hidden bg-[#005696] shrink-0">
+          <div className="w-10 h-10 rounded-full overflow-hidden bg-[#2B3A67] shrink-0">
             <video 
               src="https://skzfezsseuyqgzbdapng.supabase.co/storage/v1/object/public/meeeeee/grok-video-1ee8bc91-2ef9-4ec0-b4b0-fce514e394cc%20(1).mp4"
               className="w-full h-full object-cover"
               autoPlay loop muted playsInline
             />
           </div>
-          <span className="text-3xl font-brand text-[#005696] font-bold">TOP<span className="text-[#00B7F1]">LAV</span></span>
+          <span className="text-4xl font-brand text-[#2B3A67] font-bold">TOP<span className="text-[#7DD3FC]">LAV</span></span>
         </a>
 
         {/* Desktop Nav */}
@@ -161,7 +164,7 @@ const Header = () => {
             <a 
               key={item.href} 
               href={item.href} 
-              className="font-medium text-slate-700 transition-colors hover:text-[#00B7F1]"
+              className="font-medium text-slate-700 transition-colors hover:text-[#7DD3FC]"
             >
               {item.label}
             </a>
@@ -204,76 +207,69 @@ const Header = () => {
 
 const Hero = () => {
   return (
-    <section id="home" className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-[#F8FAFC]">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Left Text Content */}
-          <div className="max-w-xl z-20">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#00B7F1]/10 text-[#005696] text-sm font-bold mb-6 uppercase tracking-wider">
-              <span className="w-2 h-2 rounded-full bg-[#00B7F1]"></span>
-              O alívio de um cesto vazio
-            </div>
-            
-            <h1 className="text-5xl lg:text-6xl font-extrabold text-slate-900 leading-[1.1] mb-6 tracking-tight">
-              Liberdade é chegar no descanso <span className="text-[#00B7F1]">sem lembrar do varal.</span>
-            </h1>
-            
-            <p className="text-lg text-slate-600 mb-8 leading-relaxed">
-              Lavanderia de Autoatendimento em Recife. Lave ou seque suas roupas com praticidade, autonomia e produtos de alta qualidade inclusos. A sua roupa limpa e seca em menos de 1 hora.
-            </p>
-            
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button variant="primary" className="text-lg px-8 py-4 rounded-xl shadow-lg shadow-blue-500/30" href={WHATSAPP_LINK}>
-                Fale Conosco pelo WhatsApp <ChevronRight size={20} />
-              </Button>
-              <Button variant="outline" className="text-lg px-8 py-4 rounded-xl border-slate-200 text-slate-700 hover:bg-slate-50 hover:border-slate-300" href="#contact">
-                Ver Localização
-              </Button>
-            </div>
-          </div>
+    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
+      {/* Video Background */}
+      <div className="absolute inset-0 w-full h-full z-0">
+        <VideoPlayer
+          src="https://skzfezsseuyqgzbdapng.supabase.co/storage/v1/object/public/meeeeee/grok-video-1ee8bc91-2ef9-4ec0-b4b0-fce514e394cc.mp4"
+          className="w-full h-full object-cover opacity-60"
+          overlayClassName="bottom-6 right-6"
+        />
+        {/* Dark Gradient Overlay for readability */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-black/90 pointer-events-none"></div>
+      </div>
 
-          {/* Right Media Content */}
-          <div className="relative z-20 h-full w-full flex items-center justify-center">
-            <div className="relative rounded-[2rem] overflow-hidden shadow-2xl w-full h-full min-h-[500px] lg:min-h-[600px] bg-slate-100 flex">
-              <VideoPlayer
-                src="https://skzfezsseuyqgzbdapng.supabase.co/storage/v1/object/public/meeeeee/grok-video-1ee8bc91-2ef9-4ec0-b4b0-fce514e394cc.mp4"
-                className="absolute inset-0 w-full h-full object-cover"
-                overlayClassName="bottom-32 right-6"
-              />
-              
-              {/* Gradient Overlay for better contrast */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none"></div>
-              
-              {/* Floating Card */}
-              <div className="absolute bottom-6 left-6 right-6 bg-white/95 backdrop-blur-sm p-4 rounded-2xl shadow-xl flex items-center gap-4">
-                <div className="w-12 h-12 rounded-xl bg-[#005696] flex items-center justify-center text-white font-brand text-xl shrink-0 font-bold">
-                  TL
-                </div>
-                <div>
-                  <h3 className="font-bold text-slate-900">TopLav</h3>
-                  <p className="text-sm text-slate-600">Tudo Limpo: Seco e pronto para o armário.</p>
-                </div>
-              </div>
-            </div>
-            
-            {/* Decorative Elements */}
-            <div className="absolute -top-10 -right-10 w-40 h-40 bg-[#00B7F1]/20 rounded-full blur-3xl -z-10"></div>
-            <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-[#005696]/20 rounded-full blur-3xl -z-10"></div>
-          </div>
+      <div className="container mx-auto px-4 relative z-10 flex flex-col items-center text-center mt-20">
+        {/* Cursive Welcome */}
+        <h2 className="text-white font-brand text-5xl md:text-6xl mb-2 tracking-wide drop-shadow-lg">
+          Bem-vindo à
+        </h2>
+        
+        {/* Main Title */}
+        <div className="relative mb-6">
+          <h1 className="text-white font-sans text-7xl md:text-9xl font-bold tracking-tighter uppercase leading-none drop-shadow-2xl">
+            TOPLAV
+          </h1>
+        </div>
+        
+        {/* Subtitle */}
+        <p className="text-gray-200 text-lg md:text-2xl max-w-3xl mx-auto font-light mb-10 leading-relaxed drop-shadow-md">
+          Cuidado premium para suas roupas com a praticidade que você merece. Lave, seque e sinta a diferença.
+        </p>
+        
+        {/* Buttons */}
+        <div className="flex flex-col sm:flex-row gap-4 justify-center w-full max-w-md sm:max-w-none">
+          <Button 
+            variant="accent" 
+            className="font-bold text-sm md:text-base px-8 py-4 rounded-md uppercase tracking-wider border-none shadow-lg shadow-yellow-500/20 transition-all hover:scale-105" 
+            href="#how-it-works"
+          >
+            Veja Como Funciona
+          </Button>
+          <Button 
+            variant="outline" 
+            className="!border-white !text-white hover:!bg-white/10 font-bold text-sm md:text-base px-8 py-4 rounded-md uppercase tracking-wider transition-all hover:scale-105" 
+            href="#about"
+          >
+            Conheça Nosso Espaço
+          </Button>
         </div>
       </div>
+      
+      {/* Bottom Reflection/Fade */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black to-transparent z-10 pointer-events-none"></div>
     </section>
   );
 };
 
 const Structure = () => {
   return (
-    <section className="py-24 bg-white overflow-hidden">
+    <section className="py-24 bg-[#F4F7F9] overflow-hidden">
       <div className="container mx-auto px-4 max-w-6xl">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Video Content */}
           <div className="order-1 relative flex justify-center lg:justify-start">
-            <div className="relative w-full max-w-[320px] aspect-[9/16] rounded-[2rem] overflow-hidden shadow-2xl border-8 border-white bg-slate-100 z-20">
+            <div className="relative w-full max-w-[320px] aspect-[9/16] rounded-3xl overflow-hidden shadow-xl border-8 border-white bg-slate-100 z-20">
               <video 
                 src="https://skzfezsseuyqgzbdapng.supabase.co/storage/v1/object/public/meeeeee/SnapInsta.to_AQNuY4Ret_yvGbt7G6vtzf0HYc7WaJ8ucVaZRScx7zk2tM6ZrY9i2IJ59B3_XrANMS0rwdMkN_a0Y3emCN7HWQyeQuGThy74Jy9W1rs.mp4"
                 className="absolute inset-0 w-full h-full object-cover"
@@ -285,18 +281,18 @@ const Structure = () => {
             </div>
             
             {/* Decorative Elements */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-to-tr from-[#005696]/20 to-[#00B7F1]/20 rounded-full blur-3xl -z-10"></div>
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-to-tr from-blue-200/40 to-blue-100/40 rounded-full blur-3xl -z-10"></div>
           </div>
 
           {/* Text Content */}
           <div className="order-2">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#00B7F1]/10 text-[#005696] text-sm font-bold mb-6 uppercase tracking-wider">
-              <Wifi size={16} className="text-[#00B7F1]" />
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-100 text-[#2B3A67] text-sm font-bold mb-6 uppercase tracking-wider">
+              <Wifi size={16} className="text-[#2B3A67]" />
               Ambiente Climatizado
             </div>
             
-            <h2 className="text-4xl md:text-5xl font-brand text-[#005696] mb-6 leading-tight">
-              Estrutura <span className="text-[#00B7F1]">Moderna e Confortável</span>
+            <h2 className="text-5xl md:text-6xl font-brand text-[#2B3A67] mb-6 leading-tight">
+              Estrutura Moderna e Confortável
             </h2>
             
             <p className="text-lg text-slate-600 mb-8 leading-relaxed">
@@ -353,22 +349,22 @@ const Structure = () => {
 
 const Differentials = () => {
   return (
-    <section id="differentials" className="py-24 bg-white">
+    <section id="differentials" className="py-24 bg-[#F4F7F9]">
       <div className="container mx-auto px-4 text-center mb-16">
-        <h2 className="text-4xl md:text-6xl font-brand text-[#005696] mb-4 tracking-tight">Nossos Diferenciais</h2>
+        <h2 className="text-5xl md:text-6xl font-brand text-[#2B3A67] mb-4 tracking-tight">Nossos Diferenciais</h2>
         <p className="text-slate-500 text-xl">Tecnologia e praticidade no coração da Caxangá.</p>
       </div>
       <div className="container mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl">
         {DIFFERENTIALS.map((item, idx) => (
           <div 
             key={idx} 
-            className="p-10 rounded-[20px] bg-[#005696] text-white flex flex-col items-center text-center shadow-2xl transition-transform hover:-translate-y-2 duration-300"
+            className="p-10 rounded-3xl bg-[#2B3A67] text-white flex flex-col items-center text-center shadow-xl transition-transform hover:-translate-y-2 duration-300"
           >
-            <div className="mb-6 text-[#00B7F1]">
+            <div className="mb-6 text-[#7DD3FC]">
               {item.icon}
             </div>
             <h4 className="text-xl font-bold mb-4 leading-snug">{item.title}</h4>
-            <p className="text-slate-300 text-sm leading-relaxed">{item.description}</p>
+            <p className="text-blue-100 text-sm leading-relaxed">{item.description}</p>
           </div>
         ))}
       </div>
@@ -378,21 +374,21 @@ const Differentials = () => {
 
 const HowItWorks = () => {
   return (
-    <section id="how-it-works" className="py-24 bg-[#F8FAFC]">
+    <section id="how-it-works" className="py-24 bg-white">
       <div className="container mx-auto px-4 text-center">
-        <h2 className="text-4xl md:text-6xl font-brand text-[#005696] mb-4">Como Funciona</h2>
+        <h2 className="text-5xl md:text-6xl font-brand text-[#2B3A67] mb-4">Como Funciona</h2>
         <p className="text-slate-500 text-lg mb-16">Quatro passos simples para você ganhar até 3 horas no seu dia.</p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
           {HOW_IT_WORKS.map((item, idx) => (
-            <div key={idx} className="relative bg-white p-8 rounded-2xl shadow-lg border border-slate-100 flex flex-col items-center text-center">
-              <div className="absolute -top-6 w-12 h-12 bg-[#00B7F1] text-white rounded-full flex items-center justify-center font-bold text-xl border-4 border-[#F8FAFC]">
+            <div key={idx} className="relative bg-white p-8 rounded-3xl shadow-sm border border-blue-100 flex flex-col items-center text-center transition-all hover:shadow-md hover:border-blue-200">
+              <div className="absolute -top-6 w-12 h-12 bg-[#2B3A67] text-white rounded-full flex items-center justify-center font-bold text-xl border-4 border-white shadow-sm">
                 {item.step}
               </div>
-              <div className="mt-6 mb-4 text-[#005696]">
+              <div className="mt-6 mb-4 text-[#2B3A67]">
                 {item.icon}
               </div>
-              <h3 className="text-xl font-bold text-[#005696] mb-3">{item.title}</h3>
+              <h3 className="text-xl font-bold text-[#2B3A67] mb-3">{item.title}</h3>
               <p className="text-slate-600 text-sm leading-relaxed">{item.description}</p>
             </div>
           ))}
@@ -470,102 +466,152 @@ const PremiumProducts = () => {
 const Plans = () => {
   const plans = [
     {
-      title: "TopClassic",
-      description: "10 Ciclos. Ideal para quem lava roupas regularmente.",
+      title: "Pacote TOPCLASSIC",
+      description: "10 ciclos (lavar ou secar)",
       price: "139",
       cents: "00",
-      unit: "pacote",
-      icon: <Droplets size={44} className="text-[#005696]" />,
-      buttonText: "Adquirir TopClassic",
-      variant: "outline" as const,
-      cyclePrice: "13,90"
+      cyclePrice: "13,90",
+      icon: <Droplets size={40} className="mb-4" />,
+      popular: false
     },
     {
-      title: "TopPlus",
-      description: "15 Ciclos. Mais economia para a família toda.",
+      title: "Pacote TOPPLUS",
+      description: "15 ciclos (lavar ou secar)",
       price: "203",
       cents: "00",
-      unit: "pacote",
-      icon: <Medal size={44} className="text-[#005696]" />,
-      buttonText: "Adquirir TopPlus",
-      variant: "primary" as const,
-      popular: true,
-      cyclePrice: "13,53"
+      cyclePrice: "13,53",
+      icon: <Medal size={40} className="mb-4" />,
+      popular: false
     },
     {
-      title: "TopSuper",
-      description: "20 Ciclos. O melhor custo-benefício para alto volume.",
+      title: "Pacote TOPSUPER",
+      description: "20 ciclos (lavar ou secar)",
       price: "260",
       cents: "00",
-      unit: "pacote",
-      icon: <Gem size={44} className="text-[#005696]" />,
-      buttonText: "Adquirir TopSuper",
-      variant: "outline" as const,
-      cyclePrice: "13,00"
+      cyclePrice: "13,00",
+      icon: <Gem size={40} className="mb-4" />,
+      popular: true,
+      popularText: "Melhor Custo-Benefício"
     }
   ];
 
   return (
-    <section id="plans" className="py-24 bg-white">
-      <div className="container mx-auto px-4 max-w-6xl">
+    <section id="plans" className="py-24 relative overflow-hidden bg-[#2B3A67]">
+      {/* Floating Bubbles Background */}
+      <div className="absolute top-10 left-10 w-16 h-16 bg-white/5 rounded-full blur-sm animate-pulse"></div>
+      <div className="absolute top-40 right-20 w-24 h-24 bg-white/5 rounded-full blur-sm animate-pulse" style={{ animationDelay: '1s' }}></div>
+      <div className="absolute bottom-20 left-1/4 w-20 h-20 bg-white/5 rounded-full blur-sm animate-pulse" style={{ animationDelay: '2s' }}></div>
+      <div className="absolute bottom-40 right-1/3 w-12 h-12 bg-white/5 rounded-full blur-sm animate-pulse" style={{ animationDelay: '0.5s' }}></div>
+
+      <div className="container mx-auto px-4 max-w-6xl relative z-10">
         <div className="text-center mb-16">
-          <h2 className="text-5xl md:text-6xl font-brand text-[#005696] mb-4">Nossos Planos</h2>
-          <p className="text-slate-500 text-xl">Escolha o pacote ideal para sua necessidade e economize ainda mais.</p>
+          <h2 className="text-5xl md:text-6xl font-brand text-white mb-6 leading-tight">
+            Mais economia para quem ama a praticidade. <br className="hidden md:block" />
+            <span className="text-[#7DD3FC]">Escolha o pacote que melhor se adapta à sua rotina!</span>
+          </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {/* Single Cycle Info */}
+        <div className="mb-16 bg-white/10 backdrop-blur-md rounded-3xl p-8 text-center border border-white/20 max-w-3xl mx-auto shadow-xl">
+          <h4 className="text-3xl font-brand text-white mb-2">Lavagem ou Secagem Avulsa</h4>
+          <p className="text-blue-200 mb-6">Precisa de apenas um ciclo? Sem problemas!</p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-8">
+            <div className="flex items-center gap-3">
+              <Droplets className="text-[#7DD3FC]" size={32} />
+              <div className="text-left">
+                <p className="font-bold text-white">Lavagem (60 min)</p>
+                <p className="text-[#7DD3FC] font-bold text-xl">R$ 14,90</p>
+              </div>
+            </div>
+            <div className="hidden sm:block w-px h-12 bg-white/20"></div>
+            <div className="flex items-center gap-3">
+              <Wind className="text-[#7DD3FC]" size={32} />
+              <div className="text-left">
+                <p className="font-bold text-white">Secagem (45 min)</p>
+                <p className="text-[#7DD3FC] font-bold text-xl">R$ 14,90</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
           {plans.map((plan, idx) => (
-            <div key={idx} className={`relative bg-white rounded-[30px] p-8 shadow-xl flex flex-col items-center text-center border-2 ${plan.popular ? 'border-[#00B7F1] scale-105 z-10' : 'border-slate-100'}`}>
+            <div key={idx} className={`relative bg-white/10 backdrop-blur-md border border-white/20 rounded-3xl p-8 shadow-2xl flex flex-col items-center text-center transition-transform hover:-translate-y-2 ${plan.popular ? 'ring-2 ring-[#7DD3FC] scale-105 md:scale-110 z-10 bg-white/15' : ''}`}>
               {plan.popular && (
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-[#00B7F1] text-white px-6 py-1.5 rounded-full text-sm font-bold flex items-center gap-2 shadow-md whitespace-nowrap">
-                  <Star size={14} className="fill-white" /> Mais popular
+                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-[#7DD3FC] text-[#2B3A67] px-6 py-1.5 rounded-full text-sm font-bold flex items-center gap-2 shadow-lg whitespace-nowrap">
+                  <Star size={14} className="fill-[#2B3A67]" /> {plan.popularText}
                 </div>
               )}
               
-              <div className="mb-6 mt-4 text-[#00B7F1]">
+              <div className="mt-4 text-[#7DD3FC]">
                 {plan.icon}
               </div>
               
-              <h3 className="text-2xl font-bold text-[#005696] mb-2">{plan.title}</h3>
-              <p className="text-slate-500 text-sm leading-relaxed mb-6 h-10">
+              <h3 className="text-3xl font-brand text-white mb-2">{plan.title}</h3>
+              <p className="text-blue-100 text-sm mb-8">
                 {plan.description}
               </p>
 
-              <div className="flex items-start text-[#005696] mb-2">
+              <div className="flex items-start text-white mb-4">
                 <span className="text-lg font-bold mt-2 mr-1">R$</span>
                 <span className="text-6xl font-bold leading-none">{plan.price}</span>
                 <div className="flex flex-col items-start ml-1">
-                  <span className="text-2xl font-bold border-b-2 border-[#005696] leading-none mb-1">,{plan.cents}</span>
+                  <span className="text-2xl font-bold border-b-2 border-white/30 leading-none mb-1">,{plan.cents}</span>
                 </div>
               </div>
-              <p className="text-sm text-slate-500 mb-8 font-medium">R$ {plan.cyclePrice} por ciclo</p>
+              
+              <div className="bg-white/10 rounded-lg px-4 py-2 mb-8 w-full">
+                <p className="text-sm text-blue-100 font-medium">Ref: R$ {plan.cyclePrice} / ciclo</p>
+              </div>
 
-              <Button 
-                variant={plan.variant} 
-                className="w-full py-4 text-base mt-auto"
+              <a 
                 href={WHATSAPP_LINK}
+                className="mt-auto bg-[#25D366] hover:bg-[#1eb054] text-white w-full py-4 rounded-xl font-bold text-sm uppercase tracking-wider transition-colors shadow-lg flex items-center justify-center gap-2"
               >
-                {plan.buttonText}
-              </Button>
+                Quero meu pacote <MessageCircle size={18} />
+              </a>
             </div>
           ))}
         </div>
-        
-        {/* Single Cycle Info */}
-        <div className="mt-16 bg-[#F8FAFC] rounded-2xl p-8 text-center border border-slate-200 max-w-3xl mx-auto">
-          <h4 className="text-2xl font-bold text-[#005696] mb-2">Lavagem ou Secagem Avulsa</h4>
-          <p className="text-slate-600 mb-4">Precisa de apenas um ciclo? Sem problemas!</p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-            <div className="flex items-center gap-2">
-              <span className="text-3xl font-bold text-[#005696]">R$ 14,90</span>
-              <span className="text-slate-500">/ ciclo</span>
+
+        {/* Regras e Observações */}
+        <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-3xl p-8 md:p-10 max-w-4xl mx-auto text-white">
+          <h4 className="text-3xl font-brand mb-8 text-center text-[#7DD3FC]">Como funcionam os pacotes?</h4>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
+            <div className="flex flex-col items-center text-center">
+              <div className="bg-white/10 p-4 rounded-full mb-4">
+                <RefreshCw size={28} className="text-[#7DD3FC]" />
+              </div>
+              <h5 className="font-bold mb-2">Flexibilidade</h5>
+              <p className="text-sm text-blue-100">Os ciclos podem ser usados tanto para lavar quanto para secar.</p>
             </div>
-            <div className="h-8 w-px bg-slate-300 hidden sm:block"></div>
-            <div className="flex items-center gap-2">
-              <span className="bg-[#FFD700] text-slate-900 px-3 py-1 rounded-md text-sm font-bold">PROMO</span>
-              <span className="text-xl font-bold text-[#005696]">R$ 13,90</span>
-              <span className="text-slate-500 text-sm">Terças e Quartas</span>
+            <div className="flex flex-col items-center text-center">
+              <div className="bg-white/10 p-4 rounded-full mb-4">
+                <ShoppingBag size={28} className="text-[#7DD3FC]" />
+              </div>
+              <h5 className="font-bold mb-2">Limite de Carga</h5>
+              <p className="text-sm text-blue-100">O limite é de 1 cesto-medida por máquina/ciclo.</p>
             </div>
+            <div className="flex flex-col items-center text-center">
+              <div className="bg-white/10 p-4 rounded-full mb-4">
+                <CreditCard size={28} className="text-[#7DD3FC]" />
+              </div>
+              <h5 className="font-bold mb-2">Facilidade</h5>
+              <p className="text-sm text-blue-100">Não precisa carregar dinheiro; adquira o pacote e receba um link de pagamento.</p>
+            </div>
+          </div>
+
+          <div className="bg-white/5 rounded-2xl p-8 text-center border border-white/10">
+            <p className="text-lg font-medium mb-6">Fale conosco, adquira seu pacote e peça seu link de pagamento!</p>
+            <a 
+              href={WHATSAPP_LINK}
+              className="inline-flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#1eb054] text-white px-8 py-4 rounded-full font-bold text-lg transition-transform hover:scale-105 shadow-xl"
+            >
+              <MessageCircle size={24} />
+              Quero meu pacote via WhatsApp
+            </a>
+            <p className="mt-4 text-sm text-blue-200">Ou adicione nosso número: <span className="font-bold">81 99685-4798</span></p>
           </div>
         </div>
       </div>
@@ -579,9 +625,9 @@ const AboutUs = () => {
     <section id="about" className="py-24 bg-white border-t border-slate-100">
       <div className="container mx-auto px-4 max-w-6xl">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          <div>
-            <h3 className="text-[#00B7F1] font-brand text-2xl mb-2">Sobre Nós</h3>
-            <h2 className="text-4xl md:text-5xl font-heading text-[#005696] mb-6 font-bold">A TopLav Lavanderia</h2>
+          <div className="text-center lg:text-left">
+            <h3 className="text-[#2B3A67] font-brand text-3xl mb-2">Uma História de Cuidado e Frescor</h3>
+            <h2 className="text-5xl md:text-6xl font-brand text-[#2B3A67] mb-6 font-bold">A TopLav Lavanderia</h2>
             <p className="text-slate-600 text-lg leading-relaxed mb-6">
               Somos uma marca própria, nascida com o propósito de trazer mais praticidade e economia para o seu dia a dia. Há 1 ano no mercado, nos orgulhamos de oferecer um serviço de autoatendimento de excelência na região da Caxangá.
             </p>
@@ -590,12 +636,12 @@ const AboutUs = () => {
             </p>
             
             <div className="grid grid-cols-2 gap-6">
-              <div className="bg-[#F8FAFC] p-6 rounded-2xl border border-slate-100">
-                <div className="text-4xl font-bold text-[#005696] mb-2">1 Ano</div>
+              <div className="bg-[#F4F7F9] p-6 rounded-3xl border border-blue-100 text-center">
+                <div className="text-4xl font-bold text-[#2B3A67] mb-2">1 Ano</div>
                 <div className="text-slate-500 font-medium">de experiência e dedicação</div>
               </div>
-              <div className="bg-[#F8FAFC] p-6 rounded-2xl border border-slate-100">
-                <div className="text-4xl font-bold text-[#005696] mb-2">100%</div>
+              <div className="bg-[#F4F7F9] p-6 rounded-3xl border border-blue-100 text-center">
+                <div className="text-4xl font-bold text-[#2B3A67] mb-2">100%</div>
                 <div className="text-slate-500 font-medium">Marca própria e independente</div>
               </div>
             </div>
@@ -603,8 +649,7 @@ const AboutUs = () => {
           
           <div className="relative animate-bounce-custom">
             <div 
-              className="aspect-square rounded-[3rem] overflow-hidden shadow-2xl"
-              style={{ WebkitBoxReflect: 'below 4px linear-gradient(to bottom, rgba(0,0,0,0.0), rgba(0,0,0,0.3))' }}
+              className="aspect-square rounded-[3rem] overflow-hidden shadow-xl border-8 border-white bg-slate-100"
             >
               <img 
                 src="https://skzfezsseuyqgzbdapng.supabase.co/storage/v1/object/public/meeeeee/Captura%20de%20tela%202026-03-12%20222946.png" 
@@ -613,12 +658,12 @@ const AboutUs = () => {
                 referrerPolicy="no-referrer"
               />
             </div>
-            <div className="absolute -bottom-8 -left-8 bg-white p-6 rounded-3xl shadow-xl border border-slate-100 max-w-xs z-10">
+            <div className="absolute -bottom-8 -left-8 bg-white p-6 rounded-3xl shadow-lg border border-blue-100 max-w-xs z-10">
               <div className="flex items-center gap-4 mb-2">
-                <div className="w-12 h-12 bg-[#00B7F1]/10 rounded-full flex items-center justify-center text-[#00B7F1]">
+                <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center text-[#2B3A67]">
                   <MapPin size={24} />
                 </div>
-                <h4 className="font-bold text-slate-800">Unidade Exclusiva</h4>
+                <h4 className="font-bold text-[#2B3A67]">Unidade Exclusiva</h4>
               </div>
               <p className="text-slate-500 text-sm">Localizada estrategicamente na Madalena, Recife, para melhor atendê-lo.</p>
             </div>
@@ -662,7 +707,7 @@ const InfluencerVideo = ({ src, className }: { src: string, className?: string }
 const Influencers = () => {
   return (
     <section className="py-24 bg-white overflow-hidden border-t border-slate-100">
-      <div className="bg-[#00B7F1] text-white py-4 transform -rotate-2 scale-110 mb-20 shadow-lg">
+      <div className="bg-[#7DD3FC] text-[#2B3A67] py-4 transform -rotate-2 scale-110 mb-20 shadow-lg">
         <div className="flex whitespace-nowrap overflow-hidden">
           <div className="animate-infinite-scroll flex gap-8 items-center w-max">
             {[...Array(10)].map((_, i) => (
@@ -681,8 +726,8 @@ const Influencers = () => {
 
       <div className="container mx-auto px-4 max-w-5xl">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-brand text-[#005696] font-bold mb-4">
-            Quem conhece, <span className="text-[#00B7F1]">recomenda!</span>
+          <h2 className="text-5xl md:text-6xl font-brand text-[#2B3A67] font-bold mb-4">
+            Quem conhece, <span className="text-[#7DD3FC]">recomenda!</span>
           </h2>
           <p className="text-slate-500 text-lg md:text-xl max-w-2xl mx-auto">
             Veja o que os influenciadores estão falando sobre a nossa estrutura, praticidade e qualidade de lavagem.
@@ -717,15 +762,15 @@ const Testimonials = () => {
   };
 
   return (
-    <section className="py-24 bg-[#F8FAFC]">
+    <section className="py-24 bg-[#F4F7F9]">
       <div className="container mx-auto px-4 text-center mb-12">
-        <h2 className="text-4xl md:text-6xl font-brand text-[#005696] mb-4">O que nossos clientes dizem</h2>
+        <h2 className="text-5xl md:text-6xl font-brand text-[#2B3A67] mb-4">O que nossos clientes dizem</h2>
         <p className="text-slate-500 text-lg md:text-xl max-w-3xl mx-auto mb-10">
           Gostou do nosso atendimento? Deixe seu comentário de 5 estrelas, conte um pouco sobre a sua experiência e compartilhe uma foto das suas roupas dobradas, limpas e cheirosas!
         </p>
         <Button 
           variant="primary" 
-          className="rounded-xl px-10 py-4 mb-20"
+          className="rounded-xl px-10 py-4 mb-20 bg-[#2B3A67] hover:bg-[#1e294b]"
           href={GOOGLE_REVIEWS_LINK}
         >
           Deixe sua Avaliação
@@ -757,7 +802,7 @@ const Testimonials = () => {
                 {TESTIMONIALS.slice(pageIndex * (window.innerWidth < 768 ? 1 : 3), (pageIndex + 1) * (window.innerWidth < 768 ? 1 : 3)).map((item) => (
                   <div key={item.id} className="bg-white p-8 rounded-[20px] shadow-xl border border-slate-100 flex flex-col h-full">
                     <div className="flex items-center gap-4 mb-4">
-                      <div className="w-12 h-12 bg-[#00B7F1]/10 rounded-full flex items-center justify-center text-[#00B7F1] font-bold text-xl">
+                      <div className="w-12 h-12 bg-[#7DD3FC]/20 rounded-full flex items-center justify-center text-[#2B3A67] font-bold text-xl">
                         {item.avatar}
                       </div>
                       <div>
@@ -789,10 +834,10 @@ const FAQ = () => {
     <section className="py-24 bg-white">
       <div className="container mx-auto px-4 max-w-4xl">
         <div className="text-center mb-16">
-          <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-blue-100 text-blue-500 mb-4">
+          <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-blue-100 text-[#2B3A67] mb-4">
             <HelpCircle size={30} />
           </div>
-          <h2 className="text-4xl md:text-6xl font-brand text-[#005696] mb-4">Perguntas Frequentes</h2>
+          <h2 className="text-5xl md:text-6xl font-brand text-[#2B3A67] mb-4">Perguntas Frequentes</h2>
           <p className="text-slate-500 text-xl font-medium">Tire suas dúvidas sobre nossos serviços de lavanderia.</p>
         </div>
         <div className="divide-y divide-slate-100 border-t border-slate-100">
@@ -802,10 +847,10 @@ const FAQ = () => {
                 className="w-full py-6 flex items-center justify-between text-left group transition-all" 
                 onClick={() => setOpenIndex(openIndex === idx ? null : idx)}
               >
-                <span className={`text-lg font-bold transition-colors ${openIndex === idx ? 'text-blue-500' : 'text-slate-800'}`}>
+                <span className={`text-lg font-bold transition-colors ${openIndex === idx ? 'text-[#2B3A67]' : 'text-slate-800'}`}>
                   {item.question}
                 </span>
-                <ChevronDown className={`text-slate-400 transition-transform duration-300 ${openIndex === idx ? 'rotate-180 text-blue-500' : ''}`} size={20} />
+                <ChevronDown className={`text-slate-400 transition-transform duration-300 ${openIndex === idx ? 'rotate-180 text-[#2B3A67]' : ''}`} size={20} />
               </button>
               <div className={`transition-all duration-300 ease-in-out ${openIndex === idx ? 'max-h-[500px] opacity-100 pb-8' : 'max-h-0 opacity-0 overflow-hidden'}`}>
                 <p className="text-slate-500 text-lg leading-relaxed">
@@ -830,8 +875,8 @@ const InstagramFeed = () => {
               <InstagramIcon size={16} />
               Nosso Instagram
             </div>
-            <h2 className="text-4xl md:text-5xl font-brand text-[#005696] font-bold">
-              Acompanhe a <span className="text-[#00B7F1]">TopLav</span>
+            <h2 className="text-5xl md:text-6xl font-brand text-[#2B3A67] font-bold">
+              Acompanhe a <span className="text-[#7DD3FC]">TopLav</span>
             </h2>
             <p className="text-slate-500 text-lg mt-4 max-w-2xl">
               Siga nosso perfil para ficar por dentro das novidades, dicas de lavagem e promoções exclusivas.
@@ -903,23 +948,23 @@ const InstagramFeed = () => {
 
 const Contact = () => {
   return (
-    <section id="contact" className="py-20 bg-[#F8FAFC] border-t border-slate-100">
+    <section id="contact" className="py-20 bg-[#F4F7F9] border-t border-slate-100">
       <div className="container mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-7xl">
         <div>
-          <h3 className="text-[#00B7F1] font-brand text-2xl mb-2">Visite-nos</h3>
-          <h2 className="text-4xl md:text-5xl font-heading text-[#005696] mb-8 font-bold">Localização & Contato</h2>
+          <h3 className="text-[#2B3A67] font-brand text-3xl mb-2">Visite-nos</h3>
+          <h2 className="text-5xl md:text-6xl font-brand text-[#2B3A67] mb-8 font-bold">Localização & Contato</h2>
           <div className="space-y-6 mb-10">
             <div className="flex items-start gap-4">
-              <div className="p-3 bg-white rounded-xl text-[#00B7F1] shadow-sm"><MapPin size={24} /></div>
+              <div className="p-3 bg-white rounded-xl text-[#7DD3FC] shadow-sm"><MapPin size={24} /></div>
               <div><h4 className="font-bold text-slate-800">Endereço</h4><p className="text-slate-600">Av. Caxangá, 205 - Loja 02 - Madalena, Recife - PE, 50720-000, Brasil</p></div>
             </div>
             <div className="flex items-start gap-4">
-              <div className="p-3 bg-white rounded-xl text-[#00B7F1] shadow-sm"><ClockIcon size={24} /></div>
+              <div className="p-3 bg-white rounded-xl text-[#7DD3FC] shadow-sm"><ClockIcon size={24} /></div>
               <div><h4 className="font-bold text-slate-800">Horário</h4><p className="text-slate-600">Aberto todos os dias das 06:00 às 22:00</p></div>
             </div>
           </div>
           <div className="flex gap-4">
-            <Button variant="primary" className="rounded-full px-8" href={WHATSAPP_LINK}>
+            <Button variant="primary" className="rounded-full px-8 bg-[#2B3A67] hover:bg-[#1e294b]" href={WHATSAPP_LINK}>
               <MessageCircle size={20} /> Falar no WhatsApp
             </Button>
           </div>
@@ -934,7 +979,7 @@ const Contact = () => {
 
 const Footer = () => {
   return (
-    <footer className="bg-[#005696] text-white pt-20 pb-10">
+    <footer className="bg-[#2B3A67] text-white pt-20 pb-10">
       <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-12 mb-16 text-center md:text-left flex flex-col md:flex-row justify-between items-start max-w-7xl">
         <div className="max-w-xs mx-auto md:mx-0">
           <div className="flex items-center justify-center md:justify-start gap-3 mb-6">
@@ -945,7 +990,7 @@ const Footer = () => {
                 autoPlay loop muted playsInline
               />
             </div>
-            <h2 className="text-3xl font-brand text-white font-bold">TOP<span className="text-[#00B7F1]">LAV</span></h2>
+            <h2 className="text-4xl font-brand text-white font-bold">TOP<span className="text-[#7DD3FC]">LAV</span></h2>
           </div>
           <p className="text-blue-100">Lavanderia de autoatendimento. Praticidade e economia para o seu dia a dia.</p>
         </div>
@@ -960,7 +1005,7 @@ const Footer = () => {
         <div className="flex flex-col gap-4">
           <h4 className="text-lg font-bold text-white">Redes Sociais</h4>
           <div className="flex gap-4 justify-center md:justify-start">
-            <a href={INSTAGRAM_LINK} target="_blank" rel="noopener noreferrer" className="p-3 bg-white/10 rounded-full hover:bg-[#00B7F1] transition-colors"><InstagramIcon size={20} /></a>
+            <a href={INSTAGRAM_LINK} target="_blank" rel="noopener noreferrer" className="p-3 bg-white/10 rounded-full hover:bg-[#7DD3FC] hover:text-[#2B3A67] transition-colors"><InstagramIcon size={20} /></a>
           </div>
         </div>
       </div>

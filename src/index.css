@@ -1,8 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Grand+Hotel&family=Inter:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --font-brand: "Playfair Display", serif;
-  --font-heading: "Inter", sans-serif;
+  --font-brand: "Grand Hotel", cursive;
+  --font-heading: "Grand Hotel", cursive;
+  --font-cursive: "Grand Hotel", cursive;
+  --font-sans: "Inter", sans-serif;
   
   --animate-infinite-scroll: infinite-scroll 25s linear infinite;
   --animate-bounce-custom: bounce-custom 3s ease-in-out infinite;
