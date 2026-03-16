@@ -1,9 +1,9 @@
 import React from 'react';
 import { Droplets, Wind, Sparkles, Heart, ShieldCheck, Clock, CheckCircle2, CreditCard, WashingMachine } from 'lucide-react';
 
-export const WHATSAPP_LINK = "https://wa.me/5581996854798";
-export const GOOGLE_REVIEWS_LINK = "https://g.page/r/review"; // Placeholder
-export const INSTAGRAM_LINK = "https://instagram.com/toplav.lavanderia";
+export const WHATSAPP_LINK = "https://wa.me/message/XFNILP4RWUMTO1";
+export const GOOGLE_REVIEWS_LINK = "https://g.page/r/CZnodaoKQ0bnEAI/review";
+export const INSTAGRAM_LINK = "https://www.instagram.com/toplav.lavanderia?igsh=MXh5Y21qNDk1NnV0ag%3D%3D&utm_source=qr";
 
 export const NAV_ITEMS = [
   { href: "#home", label: "Início" },
@@ -219,7 +219,7 @@ export const FAQ_ITEMS = [
   },
   {
     question: "Qual o horário de funcionamento?",
-    answer: "Abrimos todos os dias das 06:00 às 22:00. Você tem flexibilidade para lavar suas roupas no melhor horário para sua rotina."
+    answer: "Abrimos todos os dias das 06:00 às 21:00. Você tem flexibilidade para lavar suas roupas no melhor horário para sua rotina."
   },
   {
     question: "Vocês fazem delivery ou busca de roupas?",

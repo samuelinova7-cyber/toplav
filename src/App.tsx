@@ -963,9 +963,12 @@ const Contact = () => {
               <div><h4 className="font-bold text-slate-800">Horário</h4><p className="text-slate-600">Aberto todos os dias das 06:00 às 21:00</p></div>
             </div>
           </div>
-          <div className="flex gap-4">
+          <div className="flex flex-col sm:flex-row gap-4">
             <Button variant="primary" className="rounded-full px-8 bg-[#2B3A67] hover:bg-[#1e294b]" href={WHATSAPP_LINK}>
               <MessageCircle size={20} /> Falar no WhatsApp
+            </Button>
+            <Button variant="outline" className="rounded-full px-8 border-[#2B3A67] text-[#2B3A67] hover:bg-[#2B3A67] hover:text-white" href={GOOGLE_REVIEWS_LINK}>
+              <Star size={20} className="fill-current" /> Ver Avaliações
             </Button>
           </div>
         </div>
