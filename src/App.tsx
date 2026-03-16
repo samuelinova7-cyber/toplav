@@ -135,7 +135,7 @@ const Header = () => {
             <div key={copyIdx} className="flex items-center gap-8 px-4">
               {[...Array(4)].map((_, i) => (
                 <React.Fragment key={i}>
-                  <span className="flex items-center gap-2"><ClockIcon size={14} /> Aberto das 06:00 às 22:00</span>
+                  <span className="flex items-center gap-2"><ClockIcon size={14} /> Aberto das 06:00 às 21:00</span>
                   <span className="flex items-center gap-2"><MapPin size={14} /> Caxangá Trader Center</span>
                   <span className="flex items-center gap-2"><Wind size={14} /> Secagem em 45 min</span>
                   <span className="flex items-center gap-2"><Droplets size={14} /> Produtos Comfort Inclusos</span>
@@ -960,7 +960,7 @@ const Contact = () => {
             </div>
             <div className="flex items-start gap-4">
               <div className="p-3 bg-white rounded-xl text-[#7DD3FC] shadow-sm"><ClockIcon size={24} /></div>
-              <div><h4 className="font-bold text-slate-800">Horário</h4><p className="text-slate-600">Aberto todos os dias das 06:00 às 22:00</p></div>
+              <div><h4 className="font-bold text-slate-800">Horário</h4><p className="text-slate-600">Aberto todos os dias das 06:00 às 21:00</p></div>
             </div>
           </div>
           <div className="flex gap-4">
